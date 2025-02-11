@@ -2,7 +2,8 @@ import pandas as pd
 from konlpy.tag import Okt
 import re
 
-df = pd.read_csv('./crawling_data/reviews_kinolights.csv')
+df = pd.read_csv('./crawling_data/reviews_novel_ridi_2.csv')
+# df = pd.read_csv('./crawling_data/reviews_ani_laftel.csv')
 df.info()
 
 df_stopwords = pd.read_csv('./crawling_data/stopwords.csv')
@@ -32,7 +33,7 @@ for review in df.reviews:
 df.reviews = cleaned_sentences
 df.dropna(inplace=True)
 df.info()
-df.to_csv('./crawling_data/cleaned_reviews.csv', index=False)
+df.to_csv('./crawling_data/cleaned_reviews_ridi.csv', index=False)
 
 
 
