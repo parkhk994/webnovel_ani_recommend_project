@@ -1,5 +1,7 @@
 import sys
 from PyQt5.QtWidgets import *
+from PyQt5.QtGui import QPixmap
+from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QDesktopServices
 from PyQt5.QtCore import QUrl, QStringListModel
 from PyQt5 import uic
@@ -38,7 +40,19 @@ class Exam(QWidget, form_window):
         # Make labels clickable
         self.lbl_recommendation_0.setOpenExternalLinks(True)
         self.lbl_recommendation_1.setOpenExternalLinks(True)
-        
+
+        #초기 이미지 파일 경로와  파일 필터를 설정
+        self.path1 = 'C:/work/webnovel_ani_recommend_project/imgs/01_laftel.png'
+        self.path2 = 'C:/work/webnovel_ani_recommend_project/imgs/02_ridi.jpg'
+
+        # 라벨 크기에 맞게 이미지를 크기 조정
+        pixmap1 = QPixmap(self.path1).scaled(self.lbl_img_01.size(), aspectRatioMode= Qt.KeepAspectRatio)
+        pixmap2 = QPixmap(self.path2).scaled(self.lbl_img_02.size(), aspectRatioMode= Qt.KeepAspectRatio)
+
+        #이미지를 QPixmap 객체로 변환하여 lbl_image라벨에 표시
+        self.lbl_img_01.setPixmap(pixmap1)
+        self.lbl_img_02.setPixmap(pixmap2)
+
         # No need for separate open_recommendation_page method
 
     def btn_slot(self):
@@ -51,12 +65,12 @@ class Exam(QWidget, form_window):
         if recommendation:
             # Separate recommendations by book_type and create search URLs
             type_0_recs = [
-                f'<a href="https://laftel.net/search?keyword={rec}" style="color: black; text-decoration: none;">{rec}</a><br>'
+                f'<a href="https://laftel.net/search?keyword={rec}" style="color: white; text-decoration: none;">{rec}</a><br><br>'
                 for rec in recommendation 
                 if self.df_reviews[self.df_reviews.titles == rec].book_type.values[0] == 0
             ]
             type_1_recs = [
-                f'<a href="https://ridibooks.com/search?q={rec}&adult_exclude=y" style="color: black; text-decoration: none;">{rec}</a><br>' 
+                f'<a href="https://ridibooks.com/search?q={rec}&adult_exclude=y" style="color: white; text-decoration: none;">{rec}</a><br><br>'
                 for rec in recommendation 
                 if self.df_reviews[self.df_reviews.titles == rec].book_type.values[0] == 1
             ]
@@ -73,12 +87,12 @@ class Exam(QWidget, form_window):
         if recommendation:
             # Separate recommendations by book_type and create search URLs
             type_0_recs = [
-                f'<a href="https://laftel.net/search?keyword={rec}" style="color: black; text-decoration: none;">{rec}</a><br>'
+                f'<a href="https://laftel.net/search?keyword={rec}" style="color: white; text-decoration: none;">{rec}</a><br><br>'
                 for rec in recommendation 
                 if self.df_reviews[self.df_reviews.titles == rec].book_type.values[0] == 0
             ]
             type_1_recs = [
-                f'<a href="https://ridibooks.com/search?q={rec}&adult_exclude=y" style="color: black; text-decoration: none;">{rec}</a><br>' 
+                f'<a href="https://ridibooks.com/search?q={rec}&adult_exclude=y" style="color: white; text-decoration: none;">{rec}</a><br><br>'
                 for rec in recommendation 
                 if self.df_reviews[self.df_reviews.titles == rec].book_type.values[0] == 1
             ]
