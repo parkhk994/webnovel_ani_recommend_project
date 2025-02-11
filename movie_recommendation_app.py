@@ -51,12 +51,12 @@ class Exam(QWidget, form_window):
         if recommendation:
             # Separate recommendations by book_type and create search URLs
             type_0_recs = [
-                f'<a href="https://laftel.net/search?keyword={rec}" style="color: black; text-decoration: none;">{rec}</a><br>'
+                f'<a href="https://laftel.net/search?keyword={rec}" style="color: black; text-decoration: none;">{self.truncate_title(rec)}</a><br>'
                 for rec in recommendation 
                 if self.df_reviews[self.df_reviews.titles == rec].book_type.values[0] == 0
             ]
             type_1_recs = [
-                f'<a href="https://ridibooks.com/search?q={rec}&adult_exclude=y" style="color: black; text-decoration: none;">{rec}</a><br>' 
+                f'<a href="https://ridibooks.com/search?q={rec}&adult_exclude=y" style="color: black; text-decoration: none;">{self.truncate_title(rec)}</a><br>' 
                 for rec in recommendation 
                 if self.df_reviews[self.df_reviews.titles == rec].book_type.values[0] == 1
             ]
@@ -73,12 +73,12 @@ class Exam(QWidget, form_window):
         if recommendation:
             # Separate recommendations by book_type and create search URLs
             type_0_recs = [
-                f'<a href="https://laftel.net/search?keyword={rec}" style="color: black; text-decoration: none;">{rec}</a><br>'
+                f'<a href="https://laftel.net/search?keyword={rec}" style="color: black; text-decoration: none;">{self.truncate_title(rec)}</a><br>'
                 for rec in recommendation 
                 if self.df_reviews[self.df_reviews.titles == rec].book_type.values[0] == 0
             ]
             type_1_recs = [
-                f'<a href="https://ridibooks.com/search?q={rec}&adult_exclude=y" style="color: black; text-decoration: none;">{rec}</a><br>' 
+                f'<a href="https://ridibooks.com/search?q={rec}&adult_exclude=y" style="color: black; text-decoration: none;">{self.truncate_title(rec)}</a><br>' 
                 for rec in recommendation 
                 if self.df_reviews[self.df_reviews.titles == rec].book_type.values[0] == 1
             ]
@@ -86,6 +86,9 @@ class Exam(QWidget, form_window):
             # Display recommendations
             self.lbl_recommendation_0.setText(''.join(type_0_recs))
             self.lbl_recommendation_1.setText(''.join(type_1_recs))
+
+    def truncate_title(self, title, max_length=20):
+        return (title[:max_length] + '...') if len(title) > max_length else title
 
     def recommendation_by_title(self, title):
         movie_idx = self.df_reviews[self.df_reviews.titles == title].index[0]
