@@ -774,7 +774,7 @@ color: white;  /* 글자 색상을 흰색으로 설정 */
      <x>50</x>
      <y>310</y>
      <width>451</width>
-     <height>230</height>
+     <height>240</height>
     </rect>
    </property>
    <property name="palette">
@@ -978,7 +978,8 @@ color: white;  /* 글자 색상을 흰색으로 설정 */
    </property>
    <property name="font">
     <font>
-     <pointsize>20</pointsize>
+     <family>굴림체</family>
+     <pointsize>14</pointsize>
     </font>
    </property>
    <property name="styleSheet">
@@ -1035,12 +1036,13 @@ color: white;  /* 글자 색상을 흰색으로 설정 */
      <x>50</x>
      <y>610</y>
      <width>451</width>
-     <height>230</height>
+     <height>240</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>20</pointsize>
+     <family>굴림체</family>
+     <pointsize>14</pointsize>
     </font>
    </property>
    <property name="styleSheet">
